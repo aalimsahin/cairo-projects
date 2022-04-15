@@ -33,11 +33,13 @@
 # S:::::::::::::::SSA:::::A                 A:::::A H:::::::H     H:::::::HI::::::::IN::::::N        N::::::N
 #  SSSSSSSSSSSSSSS AAAAAAA                   AAAAAAAHHHHHHHHH     HHHHHHHHHIIIIIIIIIINNNNNNNN         NNNNNNN
 
+
 # Declare this file as a StarkNet contract.
 %lang starknet
 
 from starkware.cairo.common.cairo_builtins import HashBuiltin
-
+from starkware.starknet.common.syscalls import get_caller_address
+from starkware.cairo.common.math import assert_nn
 
 
 ################################################################
@@ -46,10 +48,8 @@ from starkware.cairo.common.cairo_builtins import HashBuiltin
 
 # Define a storage variable.
 @storage_var
-func balance() -> (res : felt):
+func balance(user : felt) -> (res : felt):
 end
-
-
 
 ################################################################
 ######################### CONSTRUCTOR ##########################
@@ -66,27 +66,41 @@ func get_balance{
     syscall_ptr : felt*,
     pedersen_ptr : HashBuiltin*,
     range_check_ptr,
-}() -> (res : felt):
-    let (res) = balance.read()
+}(user : felt) -> (res : felt):
+    let (res) = balance.read(user=user)
     return (res)
 end
-
 
 ################################################################
 ########################## EXTERNAL ############################
 ################################################################
 
-# Increases the balance by the given amount.
+
+# Increases the balance of the user by the given amount.
 @external
 func increase_balance{
     syscall_ptr : felt*,
     pedersen_ptr : HashBuiltin*,
     range_check_ptr,
 }(amount : felt):
-    let (res) = balance.read()
-    balance.write(res + amount)
+    # Verify that the amount is positive.
+    with_attr error_message(
+            "Amount must be positive. Got: {amount}."):
+        assert_nn(amount)
+    end
+
+    # Obtain the address of the account contract.
+    let (user) = get_caller_address()
+
+    # Read and update its balance.
+    let (res) = balance.read(user=user)
+    balance.write(user, res + amount)
     return ()
 end
+
+
+
+
 
 ################################################################
 ########################## INTERNAL ############################
