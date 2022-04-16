@@ -1,5 +1,6 @@
 nix-shell
 
+empty:0x0404502076d61b58697bb1f2d7f9a1e5f0b3b45b2b3da76fd589662da42c7edf
 compile contract
 starknet-compile contract.cairo --output contract_compiled.json --abi contract_abi.json
 
