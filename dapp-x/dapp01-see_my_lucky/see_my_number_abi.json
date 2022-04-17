@@ -1,0 +1,14 @@
+[
+    {
+        "inputs": [],
+        "name": "see_my_lucky_number",
+        "outputs": [
+            {
+                "name": "res",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+]

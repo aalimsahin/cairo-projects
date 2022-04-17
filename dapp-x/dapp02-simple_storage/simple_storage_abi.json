@@ -1,0 +1,25 @@
+[
+    {
+        "inputs": [],
+        "name": "get_data",
+        "outputs": [
+            {
+                "name": "data",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "new_data",
+                "type": "felt"
+            }
+        ],
+        "name": "set_data",
+        "outputs": [],
+        "type": "function"
+    }
+]
