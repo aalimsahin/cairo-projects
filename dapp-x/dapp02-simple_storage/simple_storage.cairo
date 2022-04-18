@@ -5,6 +5,7 @@
 %lang starknet
 
 from starkware.cairo.common.cairo_builtins import HashBuiltin
+# Check Math functions: https://github.com/starkware-libs/cairo-lang/blob/master/src/starkware/cairo/common/math.cairo
 from starkware.cairo.common.math import assert_nn
 
 # Define a storage variable.
@@ -13,7 +14,7 @@ func data() -> (data : felt):
 end
 
 
-# Returns the current balance.
+# Returns the current data.
 @view
 func get_data{
     syscall_ptr : felt*,
@@ -24,7 +25,7 @@ func get_data{
     return (_data)
 end
 
-# Increases the balance of the user by the given amount.
+# Set data variable.
 @external
 func set_data{
     syscall_ptr : felt*,

@@ -5,6 +5,7 @@
 %lang starknet
 
 from starkware.cairo.common.cairo_builtins import HashBuiltin
+# Check Math functions: https://github.com/starkware-libs/cairo-lang/blob/master/src/starkware/cairo/common/math.cairo
 from starkware.cairo.common.math import assert_nn
 
 # Define a storage variable.

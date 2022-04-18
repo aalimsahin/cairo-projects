@@ -1,0 +1,67 @@
+[
+    {
+        "members": [
+            {
+                "name": "id_number",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "phone_number",
+                "offset": 1,
+                "type": "felt"
+            },
+            {
+                "name": "salary",
+                "offset": 2,
+                "type": "felt"
+            }
+        ],
+        "name": "Employee",
+        "size": 3,
+        "type": "struct"
+    },
+    {
+        "inputs": [
+            {
+                "name": "id",
+                "type": "felt"
+            }
+        ],
+        "name": "get_employee_data",
+        "outputs": [
+            {
+                "name": "employee_data",
+                "type": "Employee"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "id",
+                "type": "felt"
+            },
+            {
+                "name": "new_employee_data",
+                "type": "Employee"
+            }
+        ],
+        "name": "set_employee_data",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "new_employee_data",
+                "type": "Employee"
+            }
+        ],
+        "name": "add_new_user",
+        "outputs": [],
+        "type": "function"
+    }
+]
